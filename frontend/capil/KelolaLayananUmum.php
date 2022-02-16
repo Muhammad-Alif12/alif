@@ -1,3 +1,5 @@
+<?php include '../base_url.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,37 +18,71 @@
         <div class="header-right">
           <a href="KelolaLayananUmum.php">KELOLA LAYANAN UMUM</a>
           <a href="KelolaLayananKonsolidasi.php">KELOLA LAYANAN KONSOLIDASI</a>
-          <a href="#">LOGOUT</a>
+          <a href="logout.php">LOGOUT</a>
         </div>
     </div>
 </header>
 <div class="container">
-<h1>A Fancy Table</h1>
+<br><br><br>
+<h1>LAYANAN UMUM</h1>
 
-<table id="customers">
-  <tr>
-    <th>JENIS LAYANAN</th>
-    <th>NIK</th>
-    <th>NO HP</th>
-    <th>FILE</th>
-    <th>STATUS</th>
-    <th>ACTION</th>
-  </tr>
-  <tr>
-    <td>Layanan Umum</td>
-    <td>128371982389173819</td>
-    <td>08123123123</td>
-    <td>ini file</td>
-    <td>sukses</td>
-    <td class="button-table">
-      <button type="submit">EDIT</button> |
-      <button type="submit">HAPUS</button>
-    </td>
-  </tr>
-</table>
+<div id="result"></div>
+
 </div>
 <div class="footer">
         <p>@DUKCAPIL BANTAENG</p>
     </div>
 </body>
+
+
+    <?php session_start(); ?>
+
+    <script type="text/javascript" src="../jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+
+        $( document ).ready(function() {
+        
+           $.ajax({
+            type: 'POST',
+            url: "<?php echo $base_url_backend; ?>/capil-tampil-layanan-umum.php",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer <?php echo $_SESSION['token_stakeholder']; ?>');
+            },
+            data: {},
+            success: function(res){
+                
+              var tbl = '<table id="customers">'+
+                         '<tr>'+
+                             '<th><center>JENIS LAYANAN</th>'+
+                             '<th><center>NIK</th>'+
+                             '<th><center>NAMA</th>'+
+                             '<th><center>NO HP</th>'+
+                             '<th><center>STATUS</th>'+
+                         '</tr>';
+
+            for (var i = 0; i < res[0].data.length; i++) {
+                tbl += '<tr>'+
+                        '<td><center>'+res[0].data[i].jenis_layanan+'</td>'+
+                        '<td>'+res[0].data[i].nik+'</td>'+
+                        '<td>'+res[0].data[i].nama+'</td>'+
+                        '<td>'+res[0].data[i].no_hp+'</td>'+
+                        '<td><center>'+res[0].data[i].status+'</td>'+
+                      '</tr>';
+            }
+              
+
+              tbl += '</table>';
+
+              $('#result').html(tbl);
+
+            },  error: function(error){
+
+            }
+          });
+
+        });
+
+    </script>
 </html>

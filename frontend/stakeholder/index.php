@@ -6,9 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAPIL</title>
+    <title>STAKEHOLDER</title>
     <link rel="stylesheet" href="asset/css/style.css">
-
 </head>
 <body>
     <header>    
@@ -31,6 +30,7 @@
     </div>
 </body>
 
+
 <script type="text/javascript" src="../jquery.min.js"></script>
 <script type="text/javascript">
  
@@ -51,7 +51,7 @@
             if(data.message == "Successful login."){
                 set_session_token(data.jwt);
                 alert("Berhasil Login, Selamat Datang!");
-                window.location.href = "KelolaLayananUmum.php";
+                window.location.href = "layananUmum.php";
             }else{
                 alert("Maaf Username Atau Password Yang Anda Masukkan Salah!");
                 window.location.href = "index.php";
@@ -85,5 +85,6 @@
     
   }
 </script>
+
 
 </html>

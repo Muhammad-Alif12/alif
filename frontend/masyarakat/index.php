@@ -1,3 +1,5 @@
+<?php include '../base_url.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="asset/css/style.css">
     <title>MASYARAKAT UMUM</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <header>    
@@ -24,7 +25,7 @@
 
 <div class="main">
 <div class="container">
-  <form action="proses-kirim.php" method="POST" id="layanan-umum"> 
+  <form method="POST" id="layanan-umum" enctype="multipart/form-data"> 
   <div class="row">
   <div class="row">
     <div class="col-25">
@@ -33,16 +34,16 @@
   </div>
   <div class="col-75">
       <select id="jenis-layanan" name="jenis_layanan">
-        <option value="ktp">KTP</option>
-        <option value="kk">Kartu Keluarga(KK)</option>
-        <option value="kia">KIA</option>
+        <option value="KTP">KTP</option>
+        <option value="KK">Kartu Keluarga(KK)</option>
+        <option value="KIA">KIA</option>
       </select>
     </div>
     <div class="col-25">
       <label for="fname">NIK</label>
     </div>
     <div class="col-75">
-      <input type="text" id="nik" name="nik" placeholder="Masukkan Nik..">
+      <input type="text" id="nik" name="nik" placeholder="Masukkan NIK..">
     </div>
   </div>
   <div class="row">
@@ -55,10 +56,18 @@
   </div>
   <div class="row">
     <div class="col-25">
+      <label for="lname">No HP</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="no_hp" name="no_hp" placeholder="Masukkan No Hp..">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
       <label for="subject">UPLOAD FILE</label>
     </div>
     <div class="col-75">
-    <input type="file" id="myFile" name="filename">
+    <input type="file" id="file" name="file">
     </div>
   </div>
   <br>
@@ -72,6 +81,45 @@
         <p>@DUKCAPIL BANTAENG</p>
     </div>
 
-<script src="asset/js/submit.js"></script>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript">
+ 
+
+
+  $('#layanan-umum').on('submit', function (e) {
+
+      e.preventDefault();
+      $('#btn1').attr('value', "Mohon Tunggu...");
+      document.getElementById('btn1').disabled = true;
+
+       $.ajax({
+        type: 'POST',
+        url: "<?php echo $base_url_backend; ?>/user-register-layanan-umum.php",
+        data: new FormData(this),
+        processData: false,
+        contentType: false,
+        success: function(data){
+            //var result   = jQuery.parseJSON(data);
+             
+             if(data[0]["code"]==200){
+               $('#layanan-umum')[0].reset();
+             }
+
+             alert(data[0]["msg"]);
+
+            $('#btn1').attr('value', "Kirim");
+            document.getElementById('btn1').disabled = false;
+        
+        },  error: function(error){
+
+            $('#btn1').attr('value', "Kirim");
+            document.getElementById('btn1').disabled = false;
+        }
+      });
+    
+   
+  });
+</script>
+
 </body>
 </html>

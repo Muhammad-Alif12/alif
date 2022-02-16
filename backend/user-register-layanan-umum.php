@@ -19,7 +19,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
   if (move_uploaded_file($tmp_berkas1, $gambar)) {
     $gambar = $gambar;
   } else {
-    $gambar = null;
+    $gambar = '-';
   }
   
   $result = mysqli_query($mysqli, "INSERT INTO layanan_umum (id, jenis_layanan, nik, nama, no_hp, file) 
