@@ -31,11 +31,17 @@ if($jwt){
 
         $decoded = JWT::decode($jwt, $secret_key, array('HS256'));
 
-        $id      = $_POST['id'];
-        $proses  = $_POST['proses'];
+        $id              = $_POST['id'];
+        $status          = $_POST['status'];
+        $nama_pegawai    = $_POST['nama_pegawai'];
+        $feedback_capil  = $_POST['feedback_capil'];
 
   
-        $result = mysqli_query($mysqli, "UPDATE layanan_konsolidasi set status = '$proses' WHERE id = '$id'");
+        $result = mysqli_query($mysqli, "UPDATE layanan_konsolidasi 
+                                         SET status = '$status',
+                                             nama_pegawai = '$nama_pegawai', 
+                                             feedback_capil = '$feedback_capil' 
+                                         WHERE id = $id");
         
         if($result){
 

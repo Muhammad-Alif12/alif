@@ -23,7 +23,7 @@ $lastName = $data->last_name;
 $email = $data->email;
 $password = $data->password;
 
-$table_name = 'Users';
+$table_name = 'users';
 
 $query = "INSERT INTO " . $table_name . "
                 SET first_name = :firstname,
@@ -49,7 +49,7 @@ if($stmt->execute()){
 }
 else{
     http_response_code(400);
-
-    echo json_encode(array("message" => "Unable to register the user."));
+    $error = $stmt->errorInfo();
+    echo json_encode(array("message" => "Unable to register the user Because: ".$error[2]));
 }
 ?>

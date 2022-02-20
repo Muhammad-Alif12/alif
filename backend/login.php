@@ -23,7 +23,7 @@ $data = json_decode(file_get_contents("php://input"));
 $email = $data->email;
 $password = $data->password;
 
-$table_name = 'Users';
+$table_name = 'users';
 
 $query = "SELECT id, first_name, last_name, password FROM " . $table_name . " WHERE email = ? LIMIT 0,1";
 
@@ -67,6 +67,7 @@ if($num > 0){
             array(
                 "message" => "Successful login.",
                 "jwt" => $jwt,
+                "user_info" => strtoupper($firstname.' '.$lastname),
                 "email" => $email,
                 "expireAt" => $expire_claim
             ));
@@ -76,5 +77,11 @@ if($num > 0){
         http_response_code(401);
         echo json_encode(array("message" => "Login failed.", "password" => $password));
     }
+
+
+}else{
+  echo json_encode(array("message" => "User Tidak Ditemukan"));
 }
+
+
 ?>

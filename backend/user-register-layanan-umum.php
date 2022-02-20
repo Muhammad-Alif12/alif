@@ -11,19 +11,20 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
   $nik            = $_POST['nik'];
   $nama           = $_POST['nama'];
   $no_hp          = $_POST['no_hp'];
+  $ket_pemohon    = $_POST['ket_pemohon'];
 
-  $berkas1        = $_FILES['file']['name'];
-  $tmp_berkas1    = $_FILES['file']['tmp_name'];
-  $gambar         = "gambar/".$berkas1;
+  // $berkas1        = $_FILES['file']['name'];
+  // $tmp_berkas1    = $_FILES['file']['tmp_name'];
+  // $gambar         = "gambar/".$berkas1;
   
-  if (move_uploaded_file($tmp_berkas1, $gambar)) {
-    $gambar = $gambar;
-  } else {
-    $gambar = '-';
-  }
+  // if (move_uploaded_file($tmp_berkas1, $gambar)) {
+  //   $gambar = $gambar;
+  // } else {
+  //   $gambar = '-';
+  // }
   
-  $result = mysqli_query($mysqli, "INSERT INTO layanan_umum (id, jenis_layanan, nik, nama, no_hp, file) 
-                               VALUES(null, '$jenis_layanan', '$nik', '$nama', '$no_hp', '$gambar')");
+  $result = mysqli_query($mysqli, "INSERT INTO layanan_umum (id, jenis_layanan, nik, nama, no_hp, ket_pemohon) 
+                               VALUES(null, '$jenis_layanan', '$nik', '$nama', '$no_hp', '$ket_pemohon')");
   
   if($result){ 
        

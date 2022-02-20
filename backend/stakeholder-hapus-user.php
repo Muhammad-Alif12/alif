@@ -31,25 +31,25 @@ if($jwt){
 
         $decoded = JWT::decode($jwt, $secret_key, array('HS256'));
   
-        $result = mysqli_query($mysqli, "SELECT * FROM layanan_umum");
+        $result = mysqli_query($mysqli, "DELETE FROM users WHERE id = $_POST[id]");
         
-        while($d = mysqli_fetch_array($result)){
-            $dt[]=[
-                    "id"=>$d["id"],
-                    "jenis_layanan"=>$d["jenis_layanan"],
-                    "nik"=>$d["nik"],
-                    "nama"=>$d["nama"],
-                    "no_hp"=>$d["no_hp"],
-                    "status"=>$d["status"],
-                    "feedback_capil"=>$d["feedback_capil"],
-                    "file"=>$d["file"]
-                  ];
+        $d = mysqli_fetch_array($result);
+        
+        if($d){
+
+            $res[] = [
+                "code" => 200,
+                "msg"  => "Berhasil Menghapus User!"
+            ];
+
+        }else{
+            
+            $res[] = [
+                "code" => 500,
+                "msg"  => "Gagal Menghapus User!"
+            ];
+
         }
-        
-        $res[] = [
-            "code" => 200,
-            "data" => $dt
-        ];
 
     }catch (Exception $e){
 

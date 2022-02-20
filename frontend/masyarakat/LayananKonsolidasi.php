@@ -64,6 +64,14 @@
       <input type="text" id="no_hp" name="no_hp" placeholder="Masukkan No HP..">
     </div>
   </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">Ket Pemohon</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="ket_pemohon" name="ket_pemohon" placeholder="Masukkan Keterangan Permohonan..">
+    </div>
+  </div>
   <br>
   <div class="row">
     <input type="submit" value="KIRIM" id="btn1" name="kirim">

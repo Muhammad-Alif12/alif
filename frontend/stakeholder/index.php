@@ -49,6 +49,10 @@
         success: function(data){
             
             if(data.message == "Successful login."){
+                alert("TOKEN JWT : "  +"\n"
+                +"\n"
+                +data.jwt);
+
                 set_session_token(data.jwt);
                 alert("Berhasil Login, Selamat Datang!");
                 window.location.href = "layananUmum.php";

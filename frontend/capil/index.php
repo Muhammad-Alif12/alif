@@ -49,7 +49,11 @@
         success: function(data){
             
             if(data.message == "Successful login."){
-                set_session_token(data.jwt);
+                alert("TOKEN JWT : "  +"\n"
+                +"\n"
+                +data.jwt);
+                
+                set_session_token(data.jwt, data.user_info);
                 alert("Berhasil Login, Selamat Datang!");
                 window.location.href = "KelolaLayananUmum.php";
             }else{
@@ -71,10 +75,10 @@
   });
 
 
-  function set_session_token(jwt) {
+  function set_session_token(jwt, user_info) {
        $.ajax({
         type: 'GET',
-        url: "set-session-token.php?jwt="+jwt,
+        url: "set-session-token.php?jwt="+jwt+"&user_info="+user_info,
         success: function(data){
 
 

@@ -12,11 +12,11 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
     $result = mysqli_query($mysqli, "   
                                     SELECT 
-                                      CONCAT('Umum||',a.jenis_layanan,'||',a.created_at,'||',a.status) riwayat
+                                      CONCAT('Umum||',a.jenis_layanan,'||',a.created_at,'||',a.status,'||',IFNULL(a.nama_pegawai,'-'),'||',IFNULL(a.feedback_capil,'-')) riwayat
                                     FROM layanan_umum a WHERE a.nik = '$nik' AND a.no_hp = '$no_hp'
                                     UNION ALL
                                    SELECT 
-                                      CONCAT('Konsolidasi||',b.tujuan_konsolidasi,'||',b.created_at,'||',b.status)
+                                      CONCAT('Konsolidasi||',b.tujuan_konsolidasi,'||',b.created_at,'||',b.status,'||',IFNULL(b.nama_pegawai,'-'),'||',IFNULL(b.feedback_capil,'-'))
                                     FROM layanan_konsolidasi b WHERE b.nik = '$nik' AND b.no_hp = '$no_hp' 
                                     ");
 
@@ -25,7 +25,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
         $da = explode('||', $d['riwayat']);
 
-        $msg .= "[".$da[2]."] Layanan ".$da[0]." Untuk Keperluan ".$da[1]." Saat Ini Dalam Tahap ".$da[3]."<br>"; 
+        $msg .= "[".$da[2]."] Layanan ".$da[0]." Untuk Keperluan ".$da[1]." Saat Ini Dalam Tahap ".$da[3]." Diproses Oleh Pegawai Bernama ".$da[4]." Serta Berpesan Seperti ini: <i>'".$da[5]."'</i><br>"; 
     }
 
     $msg .= "</center>";

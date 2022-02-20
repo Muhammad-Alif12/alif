@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php include '../base_url.php'; ?>
 
 <!DOCTYPE html>
@@ -25,9 +26,14 @@
 <div class="container">
 <br><br><br>
 <h1>LAYANAN UMUM</h1>
+<span>Anda Login Sebagai: <?php echo  $_SESSION['user_info']; ?></span><br><br>
 
-<div id="result"></div>
 
+    <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel" style="overflow-y: scroll;height: 350px;">
+        <div id="result"></div>
+    </div>
+
+    
 </div>
 <div class="footer">
         <p>@DUKCAPIL BANTAENG</p>
@@ -60,6 +66,7 @@
                              '<th><center>NAMA</th>'+
                              '<th><center>NO HP</th>'+
                              '<th><center>STATUS</th>'+
+                             '<th><center>AKSI</th>'+
                          '</tr>';
 
             for (var i = 0; i < res[0].data.length; i++) {
@@ -68,7 +75,10 @@
                         '<td>'+res[0].data[i].nik+'</td>'+
                         '<td>'+res[0].data[i].nama+'</td>'+
                         '<td>'+res[0].data[i].no_hp+'</td>'+
-                        '<td><center>'+res[0].data[i].status+'</td>'+
+                        '<td><center>'+res[0].data[i].status+'<br><b>Pesan:</b> '+res[0].data[i].feedback_capil+'</td>'+
+                        '<td><center>'+
+                            '<a href="proses.php?id='+res[0].data[i].id+'&hal=umum">Proses Layanan</a>'+
+                        '</td>'+
                       '</tr>';
             }
               

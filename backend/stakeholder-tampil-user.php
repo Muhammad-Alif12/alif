@@ -31,18 +31,14 @@ if($jwt){
 
         $decoded = JWT::decode($jwt, $secret_key, array('HS256'));
   
-        $result = mysqli_query($mysqli, "SELECT * FROM layanan_umum");
+        $result = mysqli_query($mysqli, "SELECT * FROM users");
         
         while($d = mysqli_fetch_array($result)){
             $dt[]=[
                     "id"=>$d["id"],
-                    "jenis_layanan"=>$d["jenis_layanan"],
-                    "nik"=>$d["nik"],
-                    "nama"=>$d["nama"],
-                    "no_hp"=>$d["no_hp"],
-                    "status"=>$d["status"],
-                    "feedback_capil"=>$d["feedback_capil"],
-                    "file"=>$d["file"]
+                    "first_name"=>$d["first_name"],
+                    "last_name"=>$d["last_name"],
+                    "email"=>$d["email"]
                   ];
         }
         

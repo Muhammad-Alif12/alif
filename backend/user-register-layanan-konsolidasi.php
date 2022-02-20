@@ -12,10 +12,11 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
   $nama           = $_POST['nama'];
   $no_hp          = $_POST['no_hp'];
   $tujuan         = $_POST['tujuan_konsolidasi'];
+  $ket_pemohon    = $_POST['ket_pemohon'];
 
   
-  $result = mysqli_query($mysqli, "INSERT INTO layanan_konsolidasi (id, nik, nama, no_hp, tujuan_konsolidasi) 
-                               VALUES(null, '$nik', '$nama', '$no_hp', '$tujuan')");
+  $result = mysqli_query($mysqli, "INSERT INTO layanan_konsolidasi (id, nik, nama, no_hp, tujuan_konsolidasi, ket_pemohon) 
+                               VALUES(null, '$nik', '$nama', '$no_hp', '$tujuan', '$ket_pemohon')");
   
   if($result){ 
        

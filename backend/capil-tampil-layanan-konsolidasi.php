@@ -35,11 +35,13 @@ if($jwt){
         
         while($d = mysqli_fetch_array($result)){
             $dt[]=[
+                    "id"=>$d["id"],
                     "tujuan_konsolidasi"=>$d["tujuan_konsolidasi"],
                     "nik"=>$d["nik"],
                     "nama"=>$d["nama"],
                     "no_hp"=>$d["no_hp"],
-                    "status"=>$d["status"]
+                    "status"=>$d["status"],
+                    "feedback_capil"=>$d["feedback_capil"]
                   ];
         }
         

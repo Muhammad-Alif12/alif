@@ -64,10 +64,10 @@
   </div>
   <div class="row">
     <div class="col-25">
-      <label for="subject">UPLOAD FILE</label>
+      <label for="lname">Ket Pemohon</label>
     </div>
     <div class="col-75">
-    <input type="file" id="file" name="file">
+      <input type="text" id="ket_pemohon" name="ket_pemohon" placeholder="Masukkan Keterangan Permohonan..">
     </div>
   </div>
   <br>
