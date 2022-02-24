@@ -21,7 +21,13 @@
                 <h2>LOGIN</h2>
                 <input type="text" placeholder="Enter Username" id="email" name="email" required> <br>
                 <input type="password" placeholder="Enter Password" id="password" name="password" required><br>
-                <input type="submit" value="LOGIN" id="btn1" name="login">
+                
+                <input type="text" placeholder="Token" id="token"><br>
+                <center>
+                <input type="submit" value="LOGIN" id="btn1" style="display:block;">
+                <input type="button" value="LOGIN" id="btn2" style="display:none;">
+                </center>
+
             </form>
         </div>
     </div>
@@ -49,13 +55,15 @@
         success: function(data){
             
             if(data.message == "Successful login."){
-                alert("TOKEN JWT : "  +"\n"
-                +"\n"
-                +data.jwt);
+                // alert("TOKEN JWT : "  +"\n"
+                // +"\n"
+                // +data.jwt);
 
+                $('#btn1').attr('style', 'display:none;');
+                $('#btn2').attr('style', 'display:block;');
+                $('#token').val(data.jwt);
                 set_session_token(data.jwt);
-                alert("Berhasil Login, Selamat Datang!");
-                window.location.href = "layananUmum.php";
+
             }else{
                 alert("Maaf Username Atau Password Yang Anda Masukkan Salah!");
                 window.location.href = "index.php";
@@ -72,6 +80,13 @@
       });
     
    
+  });
+
+
+  $('#btn2').on('click', function (e) {
+      alert("Berhasil Login, Selamat Datang!");
+      window.location.href = "layananUmum.php";
+      e.preventDefault();
   });
 
 
